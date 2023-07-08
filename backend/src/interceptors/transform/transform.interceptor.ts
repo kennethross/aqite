@@ -15,7 +15,8 @@ export class TransformInterceptor implements NestInterceptor {
         if (data) {
           return { code: res.statusCode, data, error: null };
         }
-        res.code(204);
+        console.log(res);
+        res.status(204);
         return undefined;
       }),
     );
