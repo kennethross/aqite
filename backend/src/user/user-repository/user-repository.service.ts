@@ -1,7 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaClient } from '@prisma/client';
-import { CreateUserDto } from '../dto/create-user.dto';
-import { UpdateUserDto } from '../dto/update-user.dto';
+import { UserCreateData } from './user-create-data';
+import { plainToInstance } from 'class-transformer';
+import { validate } from 'class-validator';
+import { UserUpdateData } from './user-update-data';
 
 @Injectable()
 export class UserRepositoryService extends PrismaClient {
@@ -9,7 +11,9 @@ export class UserRepositoryService extends PrismaClient {
     super();
   }
 
-  async createUser(data: CreateUserDto) {
+  async createUser(data: UserCreateData) {
+    const _data = plainToInstance(UserCreateData, data);
+    await validate(_data);
     return await this.user.create({ data });
   }
 
@@ -30,8 +34,12 @@ export class UserRepositoryService extends PrismaClient {
     });
   }
 
-  async updateUser(data: { id: string; update: UpdateUserDto }) {
+  async updateUser(data: { id: string; update: UserUpdateData }) {
     const { id, update } = data;
+
+    const _data = plainToInstance(UserCreateData, update);
+    await validate(_data);
+
     return await this.user.update({
       select: {
         id: true,
