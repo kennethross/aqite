@@ -52,7 +52,6 @@ export class UserFormComponent implements OnDestroy {
         ],
       ],
       name: [data?.name || '', Validators.required],
-      phone: data?.phone || '',
       hobbies: [data?.hobbies] || [],
       skillSets: [data?.skillSets] || [],
     });
