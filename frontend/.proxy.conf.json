@@ -1,0 +1,9 @@
+{
+  "/proxy/*": {
+  "target": "https://url.com",
+  "secure": false,
+  "changeOrigin": true,
+  "logLevel": "debug",
+  "pathRewrite": {"^/proxy" : ""}
+  }
+}

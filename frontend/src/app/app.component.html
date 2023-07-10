@@ -1,0 +1,90 @@
+<mat-toolbar color="primary">
+  <span>Complete Developer Network</span>
+</mat-toolbar>
+
+<div class="content">
+  <div class="demo-button-container">
+    <button mat-raised-button (click)="addData()" class="demo-button">
+      Add data
+    </button>
+  </div>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef>Email</th>
+      <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Username</th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="phone">
+      <th mat-header-cell *matHeaderCellDef>Phone</th>
+      <td mat-cell *matCellDef="let element">{{ element.phone }}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element; let i = index;">
+        <div style="text-align: center;">
+          <button
+            mat-icon-button
+          color="warn"
+          aria-label="Example icon button with a home icon"
+          (click)="removeData(i, element);$event.stopPropagation();"
+        >
+          <mat-icon>cancel</mat-icon>
+        </button>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr
+      mat-row
+      (click)="clickedRows(row)"
+      *matRowDef="let row; columns: displayedColumns"
+    ></tr>
+  </table>
+</div>
+
+<!-- <div class="content">
+  <div class="cards">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>What is this?</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        Simple web app template with Angular v15 + NestJS + ng-openapi-gen.<br />
+        <a
+          href="https://github.com/mugifly/angular-nest"
+          target="_blank"
+          rel="noopener"
+        >
+          https://github.com/mugifly/angular-nest
+        </a>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Example request to NestJS</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        {{ $getHello | async }}
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <button (click)="getHello()" mat-button>Request</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div> -->

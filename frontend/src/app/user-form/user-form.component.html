@@ -1,0 +1,71 @@
+<div class="content">
+  <div [formGroup]="form">
+  <p>
+    <mat-form-field class="form-field" appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" placeholder="john@doe.com" />
+      <mat-icon matSuffix>email</mat-icon>
+      <mat-hint>Hint</mat-hint>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field class="form-field" appearance="fill">
+      <mat-label>Username</mat-label>
+      <input matInput placeholder="john143" formControlName="name" />
+      <mat-hint>Hint</mat-hint>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field class="form-field" appearance="fill">
+      <mat-label>Hobbies</mat-label>
+      <mat-chip-grid #chipGrid aria-label="Hobbies selection">
+        <mat-chip-row
+          *ngFor="let hobby of form.get('hobbies')?.value; let i = index"
+          (removed)="removeHobby(i)"
+        >
+          {{ hobby }}
+          <button matChipRemove [attr.aria-label]="'remove ' + hobby">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+      </mat-chip-grid>
+      <input #hobbyInput
+        placeholder="New Fruit..."
+        [matChipInputFor]="chipGrid"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        (matChipInputTokenEnd)="addHobbies(hobbyInput.value)"
+      />
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field class="form-field" appearance="fill">
+      <mat-label>Skills</mat-label>
+      <mat-chip-grid #chipSkillGrid aria-label="Skills selection">
+        <mat-chip-row
+          *ngFor="let skill of form.get('skillSets')?.value; let i = index"
+          (removed)="removeSkill(i)"
+        >
+          {{ skill }}
+          <button matChipRemove [attr.aria-label]="'remove ' + skill">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+      </mat-chip-grid>
+      <input #skillInput
+        placeholder="New Skill..."
+        [matChipInputFor]="chipSkillGrid"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        (matChipInputTokenEnd)="addSkills(skillInput.value)"
+      />
+    </mat-form-field>
+  </p>
+  </div>
+  <div class="demo-button-container">
+    <button [disabled]="!form.valid" mat-raised-button [class.spinner]="loading" class="demo-button" (click)="saved()">
+      <span *ngIf="!loading">
+        {{ isCreate ? "Create" : "Save" }}
+      </span>
+    </button>
+    <button mat-raised-button class="demo-button" mat-dialog-close>Cancel</button>
+  </div>
+</div>
