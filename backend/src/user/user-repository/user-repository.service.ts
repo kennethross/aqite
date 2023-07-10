@@ -14,7 +14,7 @@ export class UserRepositoryService extends PrismaClient {
   async createUser(data: UserCreateData) {
     const _data = plainToInstance(UserCreateData, data);
     await validate(_data, { whitelist: true });
-    return await this.user.create({ data });
+    return await this.user.create({ data:_data });
   }
 
   async getAllUsers() {
@@ -45,7 +45,7 @@ export class UserRepositoryService extends PrismaClient {
         id: true,
       },
       where: { id },
-      data: update,
+      data: _data,
     });
   }
 

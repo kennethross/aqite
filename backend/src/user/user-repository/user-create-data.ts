@@ -1,3 +1,4 @@
+import { Transform } from "class-transformer";
 import { Allow } from "class-validator";
 
 export class UserCreateData {
@@ -8,8 +9,10 @@ export class UserCreateData {
   email!: string;
   
   @Allow()
+  @Transform(({ value }) => value === null ? [] : value)
   hobbies: string[];
   
   @Allow()
-  skillSets!: string[];
+  @Transform(({ value }) => value === null ? [] : value)
+  skillSets: string[];
 }
