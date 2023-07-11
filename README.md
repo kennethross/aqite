@@ -14,4 +14,4 @@ There is some variations... https://github.com/mugifly/angular-nest/wiki#variati
 - Docker -- for Production environment.
 - Jest -- for Unit testing of Backend
 - Render -- Backend hosting -- [Docs](https://aqite.onrender.com/docs)
-- Netlify - [Frontend hosting](https://64ac05fe12e06119fa0bb053--voluble-creponne-a6ac7d.netlify.app/)https://64ac05fe12e06119fa0bb053--voluble-creponne-a6ac7d.netlify.app/ 
+- Netlify - [Frontend hosting](https://64ac05fe12e06119fa0bb053--voluble-creponne-a6ac7d.netlify.app/) 
