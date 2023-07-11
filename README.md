@@ -4,8 +4,6 @@ Simple web app template with Angular + NestJS + swagger + Angular Material.
 
 ## Key Elements
 
-There is some variations... https://github.com/mugifly/angular-nest/wiki#variations
-
 - Angular -- for Frontend app.
 - NestJS -- for Backend app.
 - Database -- Cloud Mongodb
