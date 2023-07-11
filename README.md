@@ -13,5 +13,5 @@ There is some variations... https://github.com/mugifly/angular-nest/wiki#variati
   - NOTE: There is also a [vanilla branch](https://github.com/mugifly/angular-nest/tree/vanilla) that doesn't include Angular Material.
 - Docker -- for Production environment.
 - Jest -- for Unit testing of Backend
-- Render -- Backend hosting
-- 
+- Render -- Backend hosting -- [Docs](https://aqite.onrender.com/docs)
+- Netlify - [Frontend hosting](https://64ac05fe12e06119fa0bb053--voluble-creponne-a6ac7d.netlify.app/)https://64ac05fe12e06119fa0bb053--voluble-creponne-a6ac7d.netlify.app/ 
