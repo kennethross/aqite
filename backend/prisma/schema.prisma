@@ -4,7 +4,6 @@
 generator client {
   provider = "prisma-client-js"
   binaryTargets = ["native", "debian-openssl-1.1.x","debian-openssl-3.0.x", "linux-musl","linux-musl-openssl-3.0.x"]
-
 }
 
 datasource db {
@@ -16,8 +15,8 @@ model User {
   id              String      @id @default(auto()) @map("_id") @db.ObjectId
   email     String   @unique
   name      String?
-  hobbies   String[]
-  skillSets String[]
+  hobbies   String[] @default([])
+  skillSets String[] @default([])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   deleted   Boolean  @default(false)
