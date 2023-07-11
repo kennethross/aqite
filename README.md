@@ -13,7 +13,7 @@ Simple web app template with Angular + NestJS + swagger + Angular Material.
 - Docker -- for Production environment.
 - Jest -- for Unit testing of Backend
 - Render -- Backend hosting -- [Docs](https://aqite.onrender.com/docs)
-- Netlify - [Frontend hosting](https://64ac05fe12e06119fa0bb053--voluble-creponne-a6ac7d.netlify.app/) 
+- Netlify - [Frontend hosting](https://64ac05fe12e06119fa0bb053--voluble-creponne-a6ac7d.netlify.app/) (Please refresh a few times until the list showing. Backend need to be awake. Free tier, so yeah 🥶)
 
 
 ---
