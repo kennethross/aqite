@@ -1,15 +1,11 @@
-
 import { Component, OnDestroy, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
-import {
-  Subject,
-  takeUntil,
-  tap,
-} from 'rxjs';
+import { Subject, catchError, takeUntil, tap } from 'rxjs';
 import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
 import { UserFormComponent } from './user-form/user-form.component';
 import { UserService } from './user.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 export interface User {
   id: string;
@@ -26,23 +22,30 @@ export interface User {
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnDestroy {
-  displayedColumns: string[] = ['email', 'name', 'phone',  'actions'];
+  displayedColumns: string[] = ['email', 'name', 'actions'];
   dataSource = new MatTableDataSource<User>([]);
 
   getUsers$ = this.userService.getUsers$();
 
   destroy$ = new Subject<void>();
 
-  constructor(public userService: UserService, public dialog: MatDialog) {
+  constructor(
+    private _snackBar: MatSnackBar,
+    public userService: UserService,
+    public dialog: MatDialog
+  ) {
     this.getUsers();
   }
 
   getUsers() {
-    this.userService.getUsers$().pipe(
-      takeUntil(this.destroy$),
-    ).subscribe((users) => {
-      this.dataSource.data = users;
-    });
+    this.userService
+      .getUsers$()
+      .pipe(
+        takeUntil(this.destroy$)
+      )
+      .subscribe((users) => {
+        this.dataSource.data = users;
+      });
   }
 
   clearTable() {
@@ -64,16 +67,19 @@ export class AppComponent implements OnDestroy {
         message: `Are you sure you want to delete ${user.email}?`,
         okTitleBtn: 'Delete',
         cancelTitleBtn: 'Cancel',
-      }
+      },
     });
 
-    dialogRef.afterClosed().subscribe(refresh => {
+    dialogRef.afterClosed().subscribe((refresh) => {
       console.log(refresh);
       if (refresh) {
-        this.userService.removeUser$(user.id).pipe(
-          tap(() => this.getUsers()),
-          takeUntil(this.destroy$),
-        ).subscribe();
+        this.userService
+          .removeUser$(user.id)
+          .pipe(
+            tap(() => this.getUsers()),
+            takeUntil(this.destroy$)
+          )
+          .subscribe(() => this.successNotification('User deleted successfully'));
       }
     });
   }
@@ -84,10 +90,20 @@ export class AppComponent implements OnDestroy {
       // data: {name: this.name, animal: this.animal},
     });
 
-    dialogRef.afterClosed().subscribe(refresh => {
+    dialogRef.afterClosed().subscribe((refresh) => {
       if (refresh) {
+        this.successNotification('User added successfully');
         this.getUsers();
       }
+    });
+  }
+
+  successNotification(message: string) {
+    this._snackBar.open(message, '👍', {
+      duration: 3000,
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
+      panelClass: ['success-snackbar'],
     });
   }
 

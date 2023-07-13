@@ -1,14 +1,16 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 
-import { MaterialModule } from 'src/material.module';
+import { MaterialModule } from "src/material.module";
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { UserFormModule } from './user-form/user-form.module';
-import { AlertDialogModule } from './alert-dialog/alert-dialog.module';
+import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from "./app.component";
+import { UserFormModule } from "./user-form/user-form.module";
+import { AlertDialogModule } from "./alert-dialog/alert-dialog.module";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { ErrorInterceptor } from "./interceptors/error.interceptor";
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,11 +26,16 @@ import { AlertDialogModule } from './alert-dialog/alert-dialog.module';
     UserFormModule,
     HttpClientModule,
     AlertDialogModule,
+    MatSnackBarModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true,
+    }
+  ],
   bootstrap: [AppComponent],
-  schemas: [
-    CUSTOM_ELEMENTS_SCHEMA
-  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}
