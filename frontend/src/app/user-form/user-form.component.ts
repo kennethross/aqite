@@ -51,6 +51,7 @@ export class UserFormComponent implements OnDestroy {
           Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
         ],
       ],
+      phone: [data?.phone || ''],
       name: [data?.name || '', Validators.required],
       hobbies: [data?.hobbies] || [],
       skillSets: [data?.skillSets] || [],
@@ -86,6 +87,7 @@ export class UserFormComponent implements OnDestroy {
   saved() {
     this.form.markAllAsTouched();
     const { value } = this.form;
+    console.log(value);
 
     const obs = this.isCreate
       ? this.userService.createUser$(value)

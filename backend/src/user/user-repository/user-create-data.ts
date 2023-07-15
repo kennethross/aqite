@@ -7,6 +7,10 @@ export class UserCreateData {
 
   @Allow()
   email!: string;
+
+  @Allow()
+  phone!: string;
+
   
   @Allow()
   @Transform(({ value }) => value === null ? [] : value)

@@ -15,6 +15,7 @@ model User {
   id              String      @id @default(auto()) @map("_id") @db.ObjectId
   email     String   @unique
   name      String?
+  phone     String?
   hobbies   String[] @default([])
   skillSets String[] @default([])
   createdAt DateTime @default(now())
