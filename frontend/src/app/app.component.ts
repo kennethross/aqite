@@ -1,7 +1,7 @@
 import { Component, OnDestroy, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
-import { Subject, catchError, takeUntil, tap } from 'rxjs';
+import { BehaviorSubject, Subject, catchError, takeUntil, tap } from 'rxjs';
 import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
 import { UserFormComponent } from './user-form/user-form.component';
 import { UserService } from './user.service';
@@ -27,6 +27,8 @@ export class AppComponent implements OnDestroy {
 
   getUsers$ = this.userService.getUsers$();
 
+  isLoading$ = new BehaviorSubject<boolean>(true);
+
   destroy$ = new Subject<void>();
 
   constructor(
@@ -41,6 +43,7 @@ export class AppComponent implements OnDestroy {
     this.userService
       .getUsers$()
       .pipe(
+        tap(() => this.isLoading$.next(false)),
         takeUntil(this.destroy$)
       )
       .subscribe((users) => {

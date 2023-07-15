@@ -11,6 +11,7 @@ import { UserFormModule } from "./user-form/user-form.module";
 import { AlertDialogModule } from "./alert-dialog/alert-dialog.module";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { ErrorInterceptor } from "./interceptors/error.interceptor";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,13 +28,14 @@ import { ErrorInterceptor } from "./interceptors/error.interceptor";
     HttpClientModule,
     AlertDialogModule,
     MatSnackBarModule,
+    MatProgressSpinnerModule,
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptor,
       multi: true,
-    }
+    },
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
