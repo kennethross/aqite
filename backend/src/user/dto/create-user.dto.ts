@@ -16,6 +16,10 @@ export class CreateUserDto {
   name!: string;
 
   @ApiProperty()
+  @IsString()
+  phone!: string;
+
+  @ApiProperty()
   @IsArray()
   hobbies!: string[];
 

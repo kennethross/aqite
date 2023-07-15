@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatChipsModule } from '@angular/material/chips';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserService } from '../user.service';
+import { NgxMatIntlTelInputComponent } from 'ngx-mat-intl-tel-input';
 
 @NgModule({
   declarations: [UserFormComponent],
@@ -17,7 +18,8 @@ import { UserService } from '../user.service';
     MatInputModule,
     MatChipsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxMatIntlTelInputComponent,
   ],
   exports: [UserFormComponent],
   providers: [UserService]

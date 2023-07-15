@@ -22,7 +22,7 @@ export interface User {
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnDestroy {
-  displayedColumns: string[] = ['email', 'name', 'actions'];
+  displayedColumns: string[] = ['email', 'name', 'phone', 'hobbies', 'skillSets', 'actions'];
   dataSource = new MatTableDataSource<User>([]);
 
   getUsers$ = this.userService.getUsers$();
