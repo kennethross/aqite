@@ -19,7 +19,10 @@ Simple web app template with Angular + NestJS + swagger + Angular Material.
 ---
 
 ## Quick Start
-
+run this at the base dir
+```
+$ npm run start // will start both frontend and backend
+```
 ### Frontend
 ```
 $ cd frontend/
