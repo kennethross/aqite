@@ -1,0 +1,13 @@
+{
+  "name": "aqite",
+  "version": "1.0.0",
+  "description": "Simple web app template with Angular + NestJS + swagger + Angular Material.",
+  "main": "index.js",
+  "scripts": {
+    "start:server": "cd backend && npm run start:dev",
+    "start:client": "cd frontend && npm run start:dev",
+    "start": "npm run start:server & npm run start:client"
+  },
+  "author": "",
+  "license": "ISC"
+}
