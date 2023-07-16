@@ -4,10 +4,19 @@
   "description": "Simple web app template with Angular + NestJS + swagger + Angular Material.",
   "main": "index.js",
   "scripts": {
-    "start:server": "cd backend && npm run start:dev",
-    "start:client": "cd frontend && npm run start:dev",
-    "start": "npm run start:server & npm run start:client"
+    "start:server": "npm run start:dev -w backend",
+    "start:client": "npm run start:dev -w frontend",
+    "start": "concurrently --names nest,angular --kill-others \"npm run start:server\" \"npm run start:client\"",
+    "test:backend": "npm run test -w backend",
+    "test:ci": "concurrently --max-processes=1 --raw --success=all \"npm run test:backend\""
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "dependencies": {
+    "concurrently": "^8.2.0"
+  }
 }
