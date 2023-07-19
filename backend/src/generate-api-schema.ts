@@ -1,6 +1,6 @@
-import { ApiResponseSchemaHost } from "@nestjs/swagger";
+import { ApiResponseSchemaHost } from '@nestjs/swagger';
 
-type Schema = ApiResponseSchemaHost["schema"];
+type Schema = ApiResponseSchemaHost['schema'];
 
 function generateApiSchema(value: {
   code: number;
@@ -18,10 +18,10 @@ function generateApiSchema(value: {
         example: code,
       },
     },
-  }
+  };
 }
 
-export function generateApiOkSchema(schema:  Schema): Schema {
+export function generateApiOkSchema(schema: Schema): Schema {
   return generateApiSchema({
     code: 200,
     data: schema,
