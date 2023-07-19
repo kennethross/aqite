@@ -8,7 +8,9 @@
     "start:client": "npm run start:dev -w frontend",
     "start": "concurrently --names nest,angular --kill-others \"npm run start:server\" \"npm run start:client\"",
     "test:backend": "npm run test -w backend",
-    "test:ci": "concurrently --max-processes=1 --raw --success=all \"npm run test:backend\""
+    "test:ci": "concurrently --max-processes=1 --raw --success=all \"npm run test:backend\"",
+    "lint:all": "npm run lint -w backend",
+    "prepare": "husky install"
   },
   "author": "",
   "license": "ISC",
@@ -18,5 +20,8 @@
   ],
   "dependencies": {
     "concurrently": "^8.2.0"
+  },
+  "devDependencies": {
+    "husky": "^8.0.3"
   }
 }
